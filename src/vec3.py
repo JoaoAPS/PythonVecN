@@ -9,7 +9,7 @@ class Vec3:
             try:
                 assert len(x) == 3
                 self._init(*x)
-            except AssertionError:
+            except ValueError:
                 raise ValueError('Vec3 must have exactly 3 components!')
         self._create(x, y, z)
 
