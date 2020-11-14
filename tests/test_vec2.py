@@ -4,7 +4,7 @@ from src.vec2 import Vec2
 
 
 class Vec2PositiveTests(TestCase):
-    """Test the Vec2 class for positive tests"""
+    """Test the Vec2 class for successful operations"""
 
     def test_create_vec2_positive(self):
         """Test successfully creating a Vec2 object"""
@@ -34,13 +34,14 @@ class Vec2PositiveTests(TestCase):
         self.assertEqual(v2.x, 1)
         self.assertEqual(v2.y, 0)
 
-    def test_operations_vec2_positive(self):
-        """Test the basic operations involving a vec2 objects"""
+    def test_operators_vec2_positive(self):
+        """Test operators involving a vec2 objects in successful cases"""
         v1 = Vec2(-4, 3)
         v2 = Vec2(0.1, -2.5)
 
         self.assertTrue(Vec2(1.5, 2.0) == Vec2(1.5, 2))
         self.assertTrue(Vec2(1.5, 2.0) != Vec2(-1.5, 2))
+
         self.assertEqual(-v1, Vec2(4, -3))
         self.assertEqual(v1 + v2, Vec2(-3.9, 0.5))
         self.assertEqual(v1 - v2, Vec2(-4.1, 5.5))
@@ -59,7 +60,7 @@ class Vec2PositiveTests(TestCase):
 
 
 class Vec2NegativeTests(TestCase):
-    """Test the Vec2 class for negative tests"""
+    """Test the Vec2 class for unsuccessful operations"""
 
     def test_create_vec2_negative(self):
         """Test trying to create illegal vec2 raises an error"""
@@ -78,8 +79,8 @@ class Vec2NegativeTests(TestCase):
             with self.assertRaises(ValueError):
                 Vec2(*args)
 
-    def test_operations_vec2_negative(self):
-        """Test the basic operations involving a vec2 objects"""
+    def test_operators_vec2_negative(self):
+        """Test operators involving a vec2 objects in unsuccessful cases"""
         v1 = Vec2(-2, 3)
         v2 = Vec2(0.1, 2.5)
 
