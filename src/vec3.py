@@ -8,8 +8,8 @@ class Vec3:
         if type(x) is list or type(x) is tuple:
             try:
                 assert len(x) == 3
-                self._init(*x)
-            except ValueError:
+                self._create(*x)
+            except AssertionError:
                 raise ValueError('Vec3 must have exactly 3 components!')
         else:
             self._create(x, y, z)
@@ -19,13 +19,17 @@ class Vec3:
             self.x = float(x)
             self.y = float(y)
             self.z = float(z)
-        except AssertionError:
-            raise ValueError('Vector components must be float convertable!')
+        except (ValueError, TypeError) as e:
+            raise ValueError('Vector components must be float convertable!') \
+                from e
 
     def __str__(self):
         return f'Vec3({self.x}, {self.y}, {self.z})'
 
     __repr__ = __str__
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.z == other.z
 
     def __neg__(self):
         return Vec3(-self.x, -self.y, -self.z)
@@ -36,10 +40,12 @@ class Vec3:
 
     def __sub__(self, other):
         """Subtract two Vec3 obejcts"""
-        return Vec3(self.x + other.x, self.y + other.y, self.z + other.z)
+        return Vec3(self.x - other.x, self.y - other.y, self.z - other.z)
 
     def __mul__(self, scalar):
         """Multiply the vector with a scalar"""
+        if type(scalar) is not int and type(scalar) is not float:
+            raise TypeError('Only scalar multiplication allow for Vec3')
         return Vec3(scalar * self.x, scalar * self.y, scalar * self.z)
 
     __rmul__ = __mul__
@@ -59,6 +65,8 @@ class Vec3:
     def norm(self):
         """Return the norm of the vector"""
         return math.sqrt(self.dot(self))
+
+    __abs__ = norm
 
     def versor(self):
         """Return the normalized vec3"""
