@@ -5,7 +5,7 @@ class Vec2:
     """Represent a vector with 2 coordinates"""
 
     def __init__(self, x=0, y=0):
-        if type(x) is list or tuple:
+        if type(x) is list or type(x) is tuple:
             try:
                 assert len(x) == 2
                 self._init(*x)

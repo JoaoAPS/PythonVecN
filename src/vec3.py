@@ -5,7 +5,7 @@ class Vec3:
     """Represent a vector with 3 coordinates"""
 
     def __init__(self, x=0, y=0, z=0):
-        if type(x) is list or tuple:
+        if type(x) is list or type(x) is tuple:
             try:
                 assert len(x) == 3
                 self._init(*x)
