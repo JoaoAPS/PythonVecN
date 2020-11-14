@@ -11,7 +11,8 @@ class Vec3:
                 self._init(*x)
             except ValueError:
                 raise ValueError('Vec3 must have exactly 3 components!')
-        self._create(x, y, z)
+        else:
+            self._create(x, y, z)
 
     def _create(self, x, y, z):
         try:

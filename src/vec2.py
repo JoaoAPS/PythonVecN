@@ -8,22 +8,27 @@ class Vec2:
         if type(x) is list or type(x) is tuple:
             try:
                 assert len(x) == 2
-                self._init(*x)
+                self._create(*x)
             except AssertionError:
                 raise ValueError('Vec2 must have exactly 2 components!')
-        self._create(x, y)
+        else:
+            self._create(x, y)
 
     def _create(self, x, y):
         try:
             self.x = float(x)
             self.y = float(y)
-        except ValueError:
-            raise ValueError('Vector components must be float convertable!')
+        except (ValueError, TypeError) as e:
+            raise ValueError('Vector components must be float convertable!') \
+                from e
 
     def __str__(self):
         return f'Vec2({self.x}, {self.y})'
 
     __repr__ = __str__
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
 
     def __neg__(self):
         return Vec2(-self.x, -self.y)
@@ -34,10 +39,12 @@ class Vec2:
 
     def __sub__(self, other):
         """Subtract two Vec2 obejcts"""
-        return Vec2(self.x + other.x, self.y + other.y)
+        return Vec2(self.x - other.x, self.y - other.y)
 
     def __mul__(self, scalar):
         """Multiply the vector with a scalar"""
+        if type(scalar) is not int and type(scalar) is not float:
+            raise TypeError('Only scalar multiplication allow for Vec2')
         return Vec2(scalar * self.x, scalar * self.y)
 
     __rmul__ = __mul__
@@ -57,6 +64,8 @@ class Vec2:
     def norm(self):
         """Return the norm of the vector"""
         return math.sqrt(self.dot(self))
+
+    __abs__ = norm
 
     def versor(self):
         """Return the normalized vec2"""
