@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from src.vec2 import Vec2
 from src.vec3 import Vec3
 
 
@@ -24,6 +25,12 @@ class Vec3PositiveTests(TestCase):
         self.assertEqual(v2, v1)
         self.assertEqual(v3, v1)
         self.assertEqual(v4, v1)
+
+        v5 = Vec3(Vec2(x, y))
+
+        self.assertEqual(v5.x, x)
+        self.assertEqual(v5.y, y)
+        self.assertEqual(v5.z, 0)
 
     def test_create_vec3_default_positive(self):
         """Test creating a vec3 with default parameters"""
