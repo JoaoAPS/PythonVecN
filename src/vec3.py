@@ -1,5 +1,7 @@
 import math
 
+from .vec2 import Vec2
+
 
 class Vec3:
     """Represent a vector with 3 coordinates"""
@@ -11,6 +13,8 @@ class Vec3:
                 self._create(*x)
             except AssertionError:
                 raise ValueError('Vec3 must have exactly 3 components!')
+        elif type(x) is Vec2:
+            self._create(x.x, x.y, 0)
         else:
             self._create(x, y, z)
 
