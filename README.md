@@ -6,8 +6,8 @@ points in 2D and 3D space.
 ### Usage
 
 ``` python
-from vecN import Vec2
-from vecN import Vec3
+from PythonVecN import Vec2
+from PythonVecN import Vec3
 
 v2 = Vec2(1, 2)
 v3 = Vec3(1, 2, 3)
