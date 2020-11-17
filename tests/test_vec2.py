@@ -54,6 +54,7 @@ class Vec2PositiveTests(TestCase):
         self.assertEqual(v1.dot(v2), -7.9)
         self.assertEqual(v2.dot(v1), -7.9)
         self.assertEqual(v1.norm(), 5)
+        self.assertEqual(v1.norm2(), 25)
         self.assertEqual(abs(v1), 5)
         self.assertEqual(v1.versor().norm(), 1)
         self.assertEqual(v1.versor() * v1.norm(), v1)

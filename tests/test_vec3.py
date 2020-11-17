@@ -65,6 +65,7 @@ class Vec3PositiveTests(TestCase):
         self.assertEqual(v1.dot(v2), -7.7)
         self.assertEqual(v2.dot(v1), -7.7)
         self.assertEqual(v1.norm(), 7)
+        self.assertEqual(v1.norm2(), 49)
         self.assertEqual(abs(v1), 7)
         self.assertTrue(v1.versor().norm() - 1 < 1e-12)
         self.assertEqual(v1.versor() * v1.norm(), v1)

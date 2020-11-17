@@ -65,6 +65,10 @@ class Vec2:
         """Return the norm of the vector"""
         return math.sqrt(self.dot(self))
 
+    def norm2(self):
+        """Return the squared norm of the vector"""
+        return self.dot(self)
+
     __abs__ = norm
 
     def versor(self):
